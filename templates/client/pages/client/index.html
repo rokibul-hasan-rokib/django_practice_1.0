@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Clients</title>
+</head>
+<body>
+    <h1>Clients</h1>
+    <a href="{% url 'client_create' %}">Add New Client</a>
+    <table border="1">
+        <tr>
+            <th>Name</th>
+            <th>Designation</th>
+            <th>Actions</th>
+        </tr>
+        {% for client in clients %}
+        <tr>
+            <td>{{ client.name }}</td>
+            <td>{{ client.designation }}</td>
+            <td>
+                <a href="{% url 'client_update' client.id %}">Edit</a> |
+                <a href="{% url 'client_delete' client.id %}">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

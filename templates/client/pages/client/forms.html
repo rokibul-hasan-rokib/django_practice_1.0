@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Client Form</title>
+</head>
+<body>
+    <h1>{% if form.instance.pk %}Update Client{% else %}Add New Client{% endif %}</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Save</button>
+    </form>
+    <a href="{% url 'client_list' %}">Back to List</a>
+</body>
+</html>
