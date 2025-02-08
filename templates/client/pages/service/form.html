@@ -1,0 +1,7 @@
+<h2>{% if form.instance.id %} Edit {% else %} Create {% endif %} Service</h2>
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Save</button>
+</form>
+<a href="{% url 'service_list' %}">Back to Service List</a>

@@ -1,0 +1,16 @@
+<h1>Service List</h1>
+<a href="{% url 'service_create' %}">Add New Service</a>
+<ul>
+    {% for service in services %}
+        <li>
+            <h3>{{ service.title }}</h3>
+            <p>Blog: {{ service.blog.name }}</p>
+            <p>{{ service.description }}</p>
+            {% if service.icon %}
+                <img src="{{ service.icon.url }}" width="100">
+            {% endif %}
+            <a href="{% url 'service_edit' service.id %}">Edit</a>
+            <a href="{% url 'service_delete' service.id %}">Delete</a>
+        </li>
+    {% endfor %}
+</ul>
