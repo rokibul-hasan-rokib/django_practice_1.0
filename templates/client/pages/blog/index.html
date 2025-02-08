@@ -10,6 +10,7 @@
       {% for blog in blogs %}
       <li>
         <h3>{{ blog.title }}</h3>
+        <h4>{{ blog.name }}</h4>
         <p>{{ blog.description }}</p>
         {% if blog.image %}
         <p>Image URL: {{ blog.image.url }}</p>
