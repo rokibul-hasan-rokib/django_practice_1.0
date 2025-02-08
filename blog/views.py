@@ -27,3 +27,10 @@ def blog_update(request, pk):
     else:
         form = BlogForm(instance=blog)
     return render(request, 'client/pages/blog/form.html', {'form': form})
+
+def blog_delete(request, pk):
+    blog = get_object_or_404(Blog, pk=pk)
+    if request.method == 'POST':
+        blog.delete()
+        return redirect('blog_list')
+    return render(request, 'client/pages/blog/delete.html', {'blog': blog})
