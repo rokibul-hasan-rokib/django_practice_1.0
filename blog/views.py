@@ -1,3 +1,18 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect, get_object_or_404
+from .models import Blog
+from .forms import BlogForm
 
-# Create your views here.
+
+def blog_list(request):
+    blogs = Blog.objects.all()
+    return render(request, 'client/pages/blog/index.html', {'blogs': blogs})
+
+def blog_create(request):
+    if request.method == 'POST':
+        form = BlogForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('blog_list')
+    else:
+        form = BlogForm()
+    return render(request, 'client/pages/blog/form.html', {'form': form})
