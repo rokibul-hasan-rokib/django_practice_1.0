@@ -1,27 +1,35 @@
 <!DOCTYPE html>
 <html>
-<head>
+  <head>
     <title>Blog List</title>
-</head>
-<body>
+  </head>
+  <body>
     <h2>All Blog Posts</h2>
     <a href="{% url 'blog_create' %}">Create New Blog</a>
     <ul>
-        {% for blog in blogs %}
-            <li>
-                <h3>{{ blog.title }}</h3>
-                <p>{{ blog.description }}</p>
-                {% if blog.image %}
-                    <img src="{{ blog.image.url }}" alt="{{ blog.title }}" width="200">
-                {% endif %}
-                <br>
-                <a href="{% url 'blog_update' blog.id %}">Edit</a>
-                <form action="{% url 'blog_delete' blog.id %}" method="post" style="display:inline;">
-                    {% csrf_token %}
-                    <button type="submit">Delete</button>
-                </form>
-            </li>
-        {% endfor %}
+      {% for blog in blogs %}
+      <li>
+        <h3>{{ blog.title }}</h3>
+        <p>{{ blog.description }}</p>
+        {% if blog.image %}
+        <p>Image URL: {{ blog.image.url }}</p>
+        <img src="{{ blog.image.url }}" alt="{{ blog.title }}" width="200" />
+        {% else %}
+        <p>No image found.</p>
+        {% endif %}
+
+        <br />
+        <a href="{% url 'blog_update' blog.id %}">Edit</a>
+        <form
+          action="{% url 'blog_delete' blog.id %}"
+          method="post"
+          style="display: inline"
+        >
+          {% csrf_token %}
+          <button type="submit">Delete</button>
+        </form>
+      </li>
+      {% endfor %}
     </ul>
-</body>
+  </body>
 </html>
