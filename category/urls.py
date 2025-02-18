@@ -1,16 +1,11 @@
-# from django.urls import path
-# from .views import blog_list, blog_create, blog_update, blog_delete
-# from django.conf import settings
-# from django.conf.urls.static import static
+from django.urls import path
+from views import category_list, category_form, category_update, category_delete
+from django.conf import settings
+from django.conf.urls.static import static
 
-# urlpatterns = [
-#     path('', blog_list, name='blog_list'),
-#     path('create/', blog_create, name='blog_create'),
-#     path('update/<int:pk>/', blog_update, name='blog_update'),
-#     path('delete/<int:pk>/', blog_delete, name='blog_delete'),
-# ]
-
-# if settings.DEBUG:
-#     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-
-
+urlpatterns = [
+    path('',category_list, name="category_list")
+    path('create/', category_form, name='category_create'),
+    path('update/<int:id>/', category_update, name='category_update'),
+    path('delete/<int:id>/', category_delete, name='category_delete'),
+]
