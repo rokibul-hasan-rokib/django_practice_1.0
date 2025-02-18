@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Category List</title>
+  </head>
+  <body>
+    <h2>All Blog Posts</h2>
+    <a href="{% url 'category_create' %}">Create New Blog</a>
+    <ul>
+      {% for category in categories %}
+      <li>
+        <h3>{{ category.name }}</h3>
+        <h4>{{ category.status }}</h4>
+        <br />
+        <a href="{% url 'category_update' category.id %}">Edit</a>
+        <form
+          action="{% url 'category_delete' category.id %}"
+          method="post"
+          style="display: inline"
+        >
+          {% csrf_token %}
+          <button type="submit">Delete</button>
+        </form>
+      </li>
+      {% endfor %}
+    </ul>
+  </body>
+</html>
