@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'client',
     'blog',
     'service',
+    'category'
 ]
 
 MIDDLEWARE = [
