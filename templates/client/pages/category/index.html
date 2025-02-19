@@ -10,8 +10,8 @@
       {% for category in categories %}
       <li>
         <h3>{{ category.name }}</h3>
-        <h4>{{ category.status }}</h4>
-        <br />
+        <h4>{{ category.get_status_display }}</h4>
+                <br />
         <a href="{% url 'category_update' category.id %}">Edit</a>
         <form
           action="{% url 'category_delete' category.id %}"
