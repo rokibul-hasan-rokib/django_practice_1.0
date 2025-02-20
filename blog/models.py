@@ -1,6 +1,8 @@
 from django.db import models
+from category.models import Category
 
 class Blog(models.Model):
+    category = models.ForeignKey(Category, on_delete=models.CASCADE)
     name = models.CharField(max_length=255)
     title = models.CharField(max_length=255)
     description = models.TextField()
