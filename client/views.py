@@ -1,6 +1,8 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Client
 from .forms import ClientForm
+from rest_framework import generics
+from .serializers import ClientSerializer
 
 # List all clients
 def client_list(request):
@@ -37,3 +39,11 @@ def client_delete(request, pk):
         client.delete()
         return redirect('client_list')
     return render(request, 'client/pages/client/delete.html', {'client': client})
+
+class ClientListCreateView(generics.ListCreateAPIView):
+    queryset = Client.objects.all()
+    serializer_class = ClientSerializer
+
+class ClientRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Client.objects.all()
+    serializer_class = ClientSerializer
