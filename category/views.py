@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Category
 from .forms import CategoryForm
+from rest_framework import generics
+from .serializers import CategorySerializer
 
 
 def category_list(request):
@@ -39,3 +41,12 @@ def category_delete(request, id):
         category.delete()
         return redirect('category_list')
     return render(request, 'client/pages/category/delete.html', {'category': category})
+
+class CategoryListCreateView(generics.ListCreateAPIView):
+    queryset = Category.objects.all()
+    serializer_class = CategorySerializer
+
+# Retrieve, Update, Delete API
+class CategoryRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Category.objects.all()
+    serializer_class = CategorySerializer
