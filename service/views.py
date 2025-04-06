@@ -1,6 +1,8 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Service
 from .forms import ServiceForm
+from rest_framework import generics
+from .serializers import ServiceSerializer
 
 # List Services
 def service_list(request):
@@ -31,3 +33,11 @@ def service_delete(request, id):
         service.delete()
         return redirect('service_list')
     return render(request, 'client/pages/service/index.html', {'service': service})
+
+class ServiceListCreateView(generics.ListCreateAPIView):
+    queryset = Service.objects.all()
+    serializer_class = ServiceSerializer
+
+class ServiceRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Service.objects.all()
+    serializer_class = ServiceSerializer
